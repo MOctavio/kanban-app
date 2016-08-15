@@ -1,6 +1,6 @@
 import React from 'react';
 import Note from './Note.jsx'
 
-export default({notes}) =>
+export default({notes, onEdit}) =>
     <ul>{notes.map(note => <li key={note.id}>
-        <Note task={note.task}/></li>)}</ul>
+        <Note task={note.task} onEdit={onEdit.bind(null, note.id)}/></li>)}</ul>

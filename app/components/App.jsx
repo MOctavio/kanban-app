@@ -22,6 +22,15 @@ export default class App extends Component {
         // experimental feature
         // this.addNote = this.addNote.bind(this);
     }
+    render() {
+        const notes = this.state.notes;
+        return (
+            <div>
+            <button onClick={this.addNote}>Add note</button>
+            <Notes notes={notes} onEdit={this.editNote}/>
+            </div>
+        );
+    }
     addNote = () => {
         this.setState({
             notes: this.state.notes.concat([
@@ -31,14 +40,16 @@ export default class App extends Component {
                 }
             ])
         });
-    }
-    render() {
-        const notes = this.state.notes;
-        return (
-            <div>
-                <button onClick={this.addNote}>Add note</button>
-                <Notes notes={notes}/>
-            </div>
-        );
-    }
+    };
+    editNote = (id, task) => {
+        if(!task.trim()) return;
+
+        const notes = this.state.notes.map(note => {
+            if (note.id == id && task) {
+                note.task = task;
+            }
+            return note;
+        });
+        this.setState({notes});
+    };
 }
