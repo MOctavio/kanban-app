@@ -21,13 +21,17 @@ export default class App extends Component {
         };
         // experimental feature
         // this.addNote = this.addNote.bind(this);
+        // this.editNote = this.editNote.bind(this);
+        // this.deleteNote = this.deleteNote.bind(this);
     }
     render() {
         const notes = this.state.notes;
         return (
             <div>
             <button onClick={this.addNote}>Add note</button>
-            <Notes notes={notes} onEdit={this.editNote}/>
+            <Notes notes={notes}
+                onEdit={this.editNote}
+                onDelete={this.deleteNote}/>
             </div>
         );
     }
@@ -51,5 +55,11 @@ export default class App extends Component {
             return note;
         });
         this.setState({notes});
+    };
+    deleteNote = (id) => { // , e) => {
+        // e.stopPropagation(); http://stackoverflow.com/questions/24415631/reactjs-syntheticevent-stoppropagation-only-works-with-react-events
+        this.setState({
+            notes: this.state.notes.filter(note => note.id !== id)
+        });
     };
 }

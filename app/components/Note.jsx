@@ -18,13 +18,22 @@ export default class Note extends Component {
     renderEdit = () => {
         return <input type="text"
             ref={(e) => e ? e.selectionStart = this.props.task.length : null}
-            autofocus={true} //https://github.com/erikras/redux-form/issues/1249
             defaultValue={this.props.task}
             onBlur={this.finishEdit}
             onKeyPress={this.checkEnter}/>;
+            // autofocus={true} // https://github.com/erikras/redux-form/issues/1249
     };
     renderNote = () => {
-        return <div onClick={this.edit}>{this.props.task}</div>
+        const onDelete = this.props.onDelete;
+        return (
+            <div onClick={this.edit}>
+                <span>{this.props.task}</span>
+                {onDelete ? this.renderDelete() : null}
+            </div>
+        );
+    };
+    renderDelete = () => {
+        return <button onClick={this.props.onDelete}>x</button>
     };
 
     edit = () => {
