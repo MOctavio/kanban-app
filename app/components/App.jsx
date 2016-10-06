@@ -27,12 +27,12 @@ export default class App extends Component {
     render() {
         const notes = this.state.notes;
         return (
-            <div>
-            <button onClick={this.addNote}>Add note</button>
-            <Notes notes={notes}
-                onEdit={this.editNote}
-                onDelete={this.deleteNote}/>
-            </div>
+            <section className="container">
+              <Notes notes={notes}
+                  onEdit={this.editNote}
+                  onDelete={this.deleteNote}/>
+              <button onClick={this.addNote}>Add note</button>
+            </section>
         );
     }
     addNote = () => {
