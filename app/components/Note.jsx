@@ -8,6 +8,11 @@ export default class Note extends Component {
             editing: false
         };
     }
+    componentDidUpdate() {
+        if (this.state.editing) {
+            this._input.focus();
+        }
+    }
     render() {
         if (this.state.editing) {
             return this.renderEdit();
@@ -19,7 +24,7 @@ export default class Note extends Component {
         return (
           <article className="note-content">
               <input type="text"
-                ref={(e) => e ? e.selectionStart = this.props.task.length : null}
+                ref={(c) => this._input = c}
                 defaultValue={this.props.task}
                 onBlur={this.finishEdit}
                 onKeyPress={this.checkEnter}
@@ -27,7 +32,6 @@ export default class Note extends Component {
               <span className="bar"></span>
           </article>
           // <button className="edit-note" onClick={this.finishEdit}>(y)</button>
-          // autofocus={true} // https://github.com/erikras/redux-form/issues/1249
         )
     };
     renderNote = () => {
