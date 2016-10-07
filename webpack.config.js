@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
@@ -29,8 +28,8 @@ const common = {
             include: PATHS.app
         },{
             // Test expects a RegExp! Note the slashes!
-            test: /\.css$/,
-            loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+            test: /\.(scss|css)$/,
+            loaders: ['style-loader', 'css-loader', 'sass-loader']
         },{
             test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
             loader: 'url-loader?limit=10000&mimetype=application/font-woff'
@@ -69,8 +68,7 @@ if (TARGET === 'start' || !TARGET) {
             new webpack.HotModuleReplacementPlugin(),
             new NpmInstallPlugin({
                 save: true // --save
-            }),
-            new ExtractTextPlugin('bundle.css')
+            })
         ]
     });
 }
