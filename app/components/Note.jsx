@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Icon} from 'react-fa'
 
 export default class Note extends Component {
     constructor(props) {
@@ -44,7 +45,7 @@ export default class Note extends Component {
         );
     };
     renderDelete = () => {
-        return <button className="delete-note" onClick={this.props.onDelete}>x</button>
+        return <Icon name="trash-o" className="delete-note" onClick={this.props.onDelete}/>
     };
 
     edit = () => {
