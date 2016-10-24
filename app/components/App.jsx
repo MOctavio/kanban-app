@@ -1,24 +1,14 @@
 import uuid from 'node-uuid';
 import React, {Component} from 'react';
 import Notes from './note/Notes.jsx'
+import NoteActions from './actions/noteActions'
+
 
 export default class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            notes: [
-                {
-                    id: uuid.v4(),
-                    task: 'Review Webpack'
-                }, {
-                    id: uuid.v4(),
-                    task: 'Learn React'
-                }, {
-                    id: uuid.v4(),
-                    task: 'Learn React-Redux'
-                }
-            ]
-        };
+        this.state = NoteStore.getState();
+
         // experimental feature
         // this.addNote = this.addNote.bind(this);
         // this.editNote = this.editNote.bind(this);
