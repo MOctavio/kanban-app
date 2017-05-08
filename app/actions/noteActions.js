@@ -1,9 +1,5 @@
 import uuid from 'node-uuid';
-import {
-    CREATE_NOTE,
-    UPDATE_NOTE,
-    DELETE_NOTE
-} from 'Actions';
+import {CREATE_NOTE, UPDATE_NOTE, DELETE_NOTE} from 'Actions';
 
 export function createNote(note) {
     return {
@@ -23,8 +19,5 @@ export function updateNote(updatedNote) {
 };
 
 export function deleteNote(id) {
-    return {
-        type: DELETE_NOTE,
-        id
-    };
+    return {type: DELETE_NOTE, id};
 };

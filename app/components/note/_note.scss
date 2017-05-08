@@ -7,22 +7,28 @@
     margin: 1em;
     width: 300px;
     -webkit-font-smoothing: antialiased;
+
     &:hover {
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
       transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
     }
+
     .note-content {
       padding: 0.5em 0.7em;
+      background-color: red;
     }
+
     & .task {
       display: inline-block;
     }
+
     & .delete-note {
       cursor: pointer;
       float: right;
       padding: 0.5em 0.7em;
       visibility: hidden;
     }
+
     &:hover .delete-note {
       visibility: visible;
     }

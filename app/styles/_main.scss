@@ -5,6 +5,7 @@ body {
   font-size: $font-size;
   line-height: $line-height;
 }
+
 button {
   align-items: center;
   background-color: white;
@@ -21,10 +22,12 @@ button {
   text-transform: uppercase;
   z-index: 0;
   -webkit-font-smoothing: antialiased;
+
   &:active {
     box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
   }
 }
+
 input {
   border: none;
   border-bottom: 1px solid $base-color-2;
@@ -32,17 +35,20 @@ input {
   font-size: $font-size;
   padding: 8px 0 10px;
   width: 200px;
+
   &:focus {
     outline: none;
     border: none;
     transition: 0.2s ease all;
   }
 }
+
 .bar {
   position: relative;
   display: block;
-  &:before,
-  &:after {
+
+  &:after,
+  &:before {
     background: $base-color-2-dark;
     bottom: 1px;
     content: '';
@@ -51,17 +57,21 @@ input {
     transition: 0.3s ease all;
     width: 0;
   }
+
   &:before {
     left: 50%;
   }
+
   &:after {
     right: 50%;
   }
 }
-input:focus~.bar:before,
-input:focus~.bar:after {
+
+input:focus~.bar:after,
+input:focus~.bar:before {
   width: 50%;
 }
+
 .container {
   background-color: whitesmoke;
   max-width: 332px;
