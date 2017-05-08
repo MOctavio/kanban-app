@@ -3,7 +3,20 @@ import React, {Component} from 'react';
 import Notes from './note/Notes.jsx';
 import configureStore from '../stores/noteStore';
 
-const NoteStore = configureStore();
+const NoteStore = configureStore({
+  notes: [
+    {
+      id: uuid.v4(),
+      task: 'Review Webpack'
+    }, {
+      id: uuid.v4(),
+      task: 'Learn React'
+    }, {
+      id: uuid.v4(),
+      task: 'Learn React-Redux'
+    }
+  ]
+});
 
 export default class App extends Component {
   constructor(props) {

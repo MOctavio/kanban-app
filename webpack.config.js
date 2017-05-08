@@ -28,17 +28,15 @@ const common = {
         loader: 'babel-loader?cacheDirectory',
         include: PATHS.app
       }, {
+        test: /\.(css)$/,
+        use: ['style-loader', 'css-loader']
+      }, {
         // Test expects a RegExp! Note the slashes!
-        test: /\.(scss|css)$/,
+        test: /\.(scss)$/,
+        // loaders: ['style-loader','css-loader', 'sass-loader']
         use: [
-          {
-            loader: 'style-loader'
-          }, {
-            loader: 'css-loader',
-            options: {
-              modules: true
-            }
-          }, {
+          'style-loader',
+          'css-loader', {
             loader: 'sass-loader',
             options: {
               sourceMap: true
