@@ -1,52 +1,26 @@
 import uuid from 'node-uuid';
 import React, {Component} from 'react';
 import Notes from './note/Notes.jsx';
-import configureStore from '../stores/noteStore';
-
-const NoteStore = configureStore({
-  notes: [
-    {
-      id: uuid.v4(),
-      task: 'Review Webpack'
-    }, {
-      id: uuid.v4(),
-      task: 'Learn React'
-    }, {
-      id: uuid.v4(),
-      task: 'Learn React-Redux'
-    }
-  ]
-});
+import AddNote from '../containers/AddNote.jsx';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = NoteStore.getState();
-
-    // experimental feature
-    // this.addNote = this.addNote.bind(this);
-    // this.editNote = this.editNote.bind(this);
-    // this.deleteNote = this.deleteNote.bind(this);
+    // this.state = NoteStore.getState();
+    this.state = {
+      notes: []
+    };
   }
   render() {
     const notes = this.state.notes;
     return (
       <section className="container">
         <Notes notes={notes} onEdit={this.editNote} onDelete={this.deleteNote}/>
-        <button onClick={this.addNote}>Add note</button>
+        <AddNote/>
       </section>
     );
   }
-  addNote = () => {
-    this.setState({
-      notes: this.state.notes.concat([
-        {
-          id: uuid.v4(),
-          task: 'New task'
-        }
-      ])
-    });
-  };
+
   editNote = (id, task) => {
     if (!task.trim())
       return;

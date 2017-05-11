@@ -87,5 +87,15 @@ if (TARGET === 'start' || !TARGET) {
 }
 
 if (TARGET === 'build') {
-  module.exports = merge(common, {});
+  module.exports = merge(common, {
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify('production')
+        }
+      }),
+      new webpack.optimize.UglifyJsPlugin()
+    ]
+  });
 }

@@ -1,12 +1,12 @@
-import * as types from '../actions/Actions';
+import * as types from '../actions/note/actionTypes';
 
 const noteReducer = (state = [], action) => {
   switch (action.type) {
     case types.CREATE_NOTE:
-      return Object.assign({}, state, {
+      return {
         ...state,
         note: action.note
-      });
+      };
       break;
     case types.UPDATE_NOTE:
       return state.map(note => {
@@ -15,7 +15,7 @@ const noteReducer = (state = [], action) => {
             type,
             ...updatedNote
           } = action;
-          return Object.assign({}, note, updatedNote);
+          return {note, updatedNote};
         }
 
         return note;

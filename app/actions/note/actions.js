@@ -1,5 +1,5 @@
 import uuid from 'node-uuid';
-import {CREATE_NOTE, UPDATE_NOTE, DELETE_NOTE} from 'Actions';
+import {CREATE_NOTE, UPDATE_NOTE, DELETE_NOTE} from './actionTypes';
 
 export function createNote(note) {
     return {

@@ -8,7 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack-dev-server",
     "start": "webpack-dev-server --progress true"
   },
   "keywords": [
@@ -41,6 +41,7 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-fa": "^4.2.0",
+    "react-redux": "^5.0.4",
     "redux": "^3.6.0"
   }
 }
