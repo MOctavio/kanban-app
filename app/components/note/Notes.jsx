@@ -1,10 +1,23 @@
 import React from 'react';
-import Note from './Note.jsx'
+import Note from './note.jsx'
+import PropTypes from 'prop-types'
 
-export default({notes, onEdit, onDelete}) =>
-    <div className="notes">{notes.map(note =>
+const Notes = ({notes, onEditClick, onDeleteClick}) =>(
+  <div className="notes">
+    {notes.map(note =>
       <section className="note" key={note.id}>
-        <Note task={note.task}
-            onEdit={onEdit.bind(null, note.id)}
-            onDelete={onDelete.bind(null, note.id)}/></section>)}
-    </div>
+        <Note note={note}
+            onEdit={onEditClick}
+            onDelete={onDeleteClick}/>
+      </section>
+    )}
+  </div>
+);
+
+Notes.propTypes = {
+  notes: PropTypes.array.isRequired,
+  onEditClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired
+}
+
+export default Notes;

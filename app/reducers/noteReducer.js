@@ -2,20 +2,20 @@ import * as types from '../actions/note/actionTypes';
 
 const noteReducer = (state = [], action) => {
   switch (action.type) {
-    case types.CREATE_NOTE:
-      return {
+    case types.ADD_NOTE:
+      return [
         ...state,
-        note: action.note
-      };
+        {...action.note}
+      ];
       break;
-    case types.UPDATE_NOTE:
+    case types.EDIT_NOTE:
       return state.map(note => {
         if (note.id === action.id) {
           const {
             type,
             ...updatedNote
           } = action;
-          return {note, updatedNote};
+          return {...updatedNote};
         }
 
         return note;

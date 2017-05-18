@@ -1,28 +1,25 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {createNote} from '../actions/note/actions'
+import React from 'react';
+import {connect} from 'react-redux';
+import {addNote} from '../actions/note/actions';
 
-const mapStateToProps = (state, ownProps) => {
-  return {task: 'New task'}
+const mapStateToProps = (state) => {
+  return {notes: state.notes};
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onClick: () => {
-      dispatch(createNote(ownProps))
+      dispatch(addNote({task: 'New task'}));
     }
-  }
+  };
 };
 
-let addNote = ({onClick}) => {
+let AddNote = ({onClick}) => {
   return (
-    <button onClick={e => {
-      e.preventDefault();
-      onClick();
-    }}>Add note</button>
-  )
-}
+    <button onClick={() => onClick()}>Add note</button>
+  );
+};
 
-addNote = connect(mapStateToProps, mapDispatchToProps)(addNote);
+AddNote = connect(mapStateToProps, mapDispatchToProps)(AddNote);
 
-export default addNote
+export default AddNote;

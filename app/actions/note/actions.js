@@ -1,9 +1,9 @@
 import uuid from 'node-uuid';
-import {CREATE_NOTE, UPDATE_NOTE, DELETE_NOTE} from './actionTypes';
+import {ADD_NOTE, EDIT_NOTE, DELETE_NOTE} from './actionTypes';
 
-export function createNote(note) {
+export function addNote(note) {
     return {
-        type: CREATE_NOTE,
+        type: ADD_NOTE,
         note: {
             id: uuid.v4(),
             ...note
@@ -11,10 +11,10 @@ export function createNote(note) {
     };
 };
 
-export function updateNote(updatedNote) {
+export function editNote(editedNote) {
     return {
-        type: UPDATE_NOTE,
-        ...updatedNote
+        type: EDIT_NOTE,
+        ...editedNote
     };
 };
 
