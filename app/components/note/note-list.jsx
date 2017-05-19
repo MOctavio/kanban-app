@@ -15,7 +15,10 @@ const NoteList = ({ notes, onEditClick, onDeleteClick }) => (
 );
 
 NoteList.propTypes = {
-  notes: PropTypes.array.isRequired,
+  notes: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    task: PropTypes.string.isRequired
+  }).isRequired).isRequired,
   onEditClick: PropTypes.func.isRequired,
   onDeleteClick: PropTypes.func.isRequired
 };

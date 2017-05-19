@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Icon } from 'react-fa';
+import {Icon} from 'react-fa';
 
 class Note extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class Note extends Component {
         onBlur={this.finishEdit}
         onKeyPress={this.checkEnter}
         required/>
-      <span className="bar" />
+      <span className="bar"/>
     </article>
   );
 
@@ -57,7 +57,7 @@ class Note extends Component {
   );
 
   edit = () => {
-    this.setState({ editing: true });
+    this.setState({editing: true});
   };
 
   delete = (id) => {
@@ -73,15 +73,16 @@ class Note extends Component {
   finishEdit = (e) => {
     const value = e.target.value;
     if (this.props.onEdit) {
-      this.props.onEdit({ id: this.props.note.id, task: value });
-      this.setState({ editing: false });
+      this.props.onEdit({id: this.props.note.id, task: value});
+      this.setState({editing: false});
     }
   };
 }
 
-
 Note.propTypes = {
-  note: PropTypes.object.isRequired,
+  note: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    task: PropTypes.string.isRequired}).isRequired,
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired
 };
