@@ -2,7 +2,7 @@ import React from 'react';
 import Note from './note.jsx'
 import PropTypes from 'prop-types'
 
-const Notes = ({notes, onEditClick, onDeleteClick}) =>(
+const NoteList = ({notes, onEditClick, onDeleteClick}) =>(
   <div className="notes">
     {notes.map(note =>
       <section className="note" key={note.id}>
@@ -14,10 +14,10 @@ const Notes = ({notes, onEditClick, onDeleteClick}) =>(
   </div>
 );
 
-Notes.propTypes = {
+NoteList.propTypes = {
   notes: PropTypes.array.isRequired,
   onEditClick: PropTypes.func.isRequired,
   onDeleteClick: PropTypes.func.isRequired
 }
 
-export default Notes;
+export default NoteList;

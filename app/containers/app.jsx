@@ -1,6 +1,6 @@
 import React from 'react';
-import AddNote from './addNote.jsx';
-import NotesContainer from './notesContainer';
+import AddNote from './note/add-note.jsx';
+import NotesContainer from './note/notes';
 
 const App = () => (
   <section className="container">

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addNote} from '../actions/note/actions';
+import {addNote} from '../../actions/note/actions';
 
 const mapStateToProps = (state) => {
   return {notes: state.notes};

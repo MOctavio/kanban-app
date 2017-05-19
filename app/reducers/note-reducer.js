@@ -1,6 +1,6 @@
-import * as types from '../actions/note/actionTypes';
+import * as types from '../actions/note/action-types';
 
-const noteReducer = (state = [], action) => {
+const NoteReducer = (state = [], action) => {
   switch (action.type) {
     case types.ADD_NOTE:
       return [
@@ -27,4 +27,4 @@ const noteReducer = (state = [], action) => {
   }
 }
 
-export default noteReducer;
+export default NoteReducer;

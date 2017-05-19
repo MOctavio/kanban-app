@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
-import {editNote, deleteNote} from '../actions/note/actions';
-import Notes from '../components/note/notes.jsx';
+import {editNote, deleteNote} from '../../actions/note/actions';
+import NoteList from '../../components/note/note-list.jsx';
 
 import { bindActionCreators } from "redux";
 
@@ -20,6 +20,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const NotesContainer = connect(mapStateToProps, mapDispatchToProps)(Notes);
+const NotesContainer = connect(mapStateToProps, mapDispatchToProps)(NoteList);
 
 export default NotesContainer;
