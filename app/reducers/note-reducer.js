@@ -5,17 +5,15 @@ const NoteReducer = (state = [], action) => {
     case types.ADD_NOTE:
       return [
         ...state,
-        {...action.note}
+        { ...action.note }
       ];
-      break;
     case types.EDIT_NOTE:
       return state.map(note => {
         if (note.id === action.id) {
           const {
-            type,
             ...updatedNote
           } = action;
-          return {...updatedNote};
+          return { ...updatedNote };
         }
 
         return note;
@@ -23,8 +21,8 @@ const NoteReducer = (state = [], action) => {
     case types.DELETE_NOTE:
       return state.filter((note) => note.id !== action.id);
     default:
-      return state
+      return state;
   }
-}
+};
 
 export default NoteReducer;
