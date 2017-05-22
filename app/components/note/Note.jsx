@@ -1,70 +1,87 @@
 import React, {Component} from 'react';
-import {Icon} from 'react-fa'
+import PropTypes from 'prop-types';
+import {Icon} from 'react-fa';
 
-export default class Note extends Component {
-    constructor(props) {
-        super(props);
+class Note extends Component {
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            editing: false
-        };
+    this.state = {
+      editing: false
+    };
+  }
+
+  componentDidUpdate() {
+    if (this.state.editing) {
+      this._input.focus();
     }
-    componentDidUpdate() {
-        if (this.state.editing) {
-            this._input.focus();
-        }
-    }
-    render() {
-        if (this.state.editing) {
-            return this.renderEdit();
-        }
-        return this.renderNote();
-    }
+  }
 
-    renderEdit = () => {
-        return (
-          <article className="note-content">
-              <input type="text"
-                ref={(c) => this._input = c}
-                defaultValue={this.props.task}
-                onBlur={this.finishEdit}
-                onKeyPress={this.checkEnter}
-                required/>
-              <span className="bar"></span>
-          </article>
-          // <button className="edit-note" onClick={this.finishEdit}>(y)</button>
-        )
-    };
-    renderNote = () => {
-        const onDelete = this.props.onDelete;
-        return (
-            <article className="note-content" onClick={this.edit}>
-                <span>{this.props.task}</span>
-                {onDelete ? this.renderDelete() : null}
-            </article>
-        );
-    };
-    renderDelete = () => {
-        return <Icon name="trash-o" className="delete-note" onClick={this.props.onDelete}/>
-    };
+  render() {
+    if (this.state.editing) {
+      return this.renderEdit();
+    }
+    return this.renderNote();
+  }
 
-    edit = () => {
-        this.setState({
-            editing: true
-        });
-    };
-    checkEnter = (e) => {
-        if (e.key === 'Enter') {
-            this.finishEdit(e);
-        }
-    };
-    finishEdit = (e) => {
-        const value = e.target.value;
-        if (this.props.onEdit) {
-            this.props.onEdit(value);
-            this.setState({
-                editing: false
-            });
-        }
-    };
+  renderEdit = () => (
+    <article className="note-content">
+      <input type="text"
+        ref={(c) => this._input = c}
+        defaultValue={this.props.note.task}
+        onBlur={this.finishEdit}
+        onKeyPress={this.checkEnter}
+        required/>
+      <span className="bar"/>
+    </article>
+  );
+
+  renderNote = () => {
+    return (
+      <article className="note-content" onClick={this.edit}>
+        <span>{this.props.note.task}</span>
+        {this.renderDelete()}
+      </article>
+    );
+  };
+
+  renderDelete = () => (
+    <article className="delete-note" onClick={() => {
+      this.delete(this.props.note.id);
+    }}>
+      <Icon name="trash-o"/>
+    </article>
+  );
+
+  edit = () => {
+    this.setState({editing: true});
+  };
+
+  delete = (id) => {
+    this.props.onDelete(id);
+  };
+
+  checkEnter = (e) => {
+    if (e.key === 'Enter') {
+      this.finishEdit(e);
+    }
+  };
+
+  finishEdit = (e) => {
+    const value = e.target.value;
+    if (this.props.onEdit) {
+      this.props.onEdit({id: this.props.note.id, task: value});
+      this.setState({editing: false});
+    }
+  };
 }
+
+Note.propTypes = {
+  note: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    task: PropTypes.string.isRequired}).isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired
+};
+
+export default Note;
