@@ -37,23 +37,20 @@ class Note extends Component {
   );
 
   renderNote = () => {
-    const onDelete = this.props.onDelete;
     return (
       <article className="note-content" onClick={this.edit}>
         <span>{this.props.note.task}</span>
-        {onDelete
-          ? this.renderDelete()
-          : null}
+        {this.renderDelete()}
       </article>
     );
   };
 
   renderDelete = () => (
-    <artcle className="delete-note" onClick={() => {
+    <article className="delete-note" onClick={() => {
       this.delete(this.props.note.id);
     }}>
       <Icon name="trash-o"/>
-    </artcle>
+    </article>
   );
 
   edit = () => {

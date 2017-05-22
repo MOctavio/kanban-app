@@ -1,6 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Note from './note.jsx';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { editNote, deleteNote } from '../../actions/note/actions';
+import Note from '../../components/note/note.jsx';
+
+const mapStateToProps = (state) => {
+  return { notes: state.notes };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onEditClick: bindActionCreators(editNote, dispatch),
+    onDeleteClick: bindActionCreators(deleteNote, dispatch)
+  };
+};
 
 const NoteList = ({ notes, onEditClick, onDeleteClick }) => (
   <div className="notes">
@@ -23,4 +37,6 @@ NoteList.propTypes = {
   onDeleteClick: PropTypes.func.isRequired
 };
 
-export default NoteList;
+const NotesContainer = connect(mapStateToProps, mapDispatchToProps)(NoteList);
+
+export default NotesContainer;
