@@ -1,21 +1,19 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import { addNote } from '../../actions/note/actions';
+import {addNote} from '../../actions/note/actions';
 
-const mapStateToProps = (state) => {
-  return { notes: state.notes };
-};
+const mapStateToProps = (state) => ({
+  notes: state.notes
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onClick: () => {
-      dispatch(addNote({ task: 'New task' }));
-    }
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  onClick() {
+    dispatch(addNote({task: 'New task'}));
+  }
+});
 
-let AddNote = ({ onClick }) => {
+let AddNote = ({onClick}) => {
   return (
     <button onClick={() => onClick()}>Add note</button>
   );
