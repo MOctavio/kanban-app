@@ -1,26 +1,36 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const NpmInstallPlugin = require('npm-install-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const TARGET = process.env.npm_lifecycle_event;
+
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
+  build: path.join(__dirname, 'build'),
+  vendor: path.join(__dirname, 'app/vendor.js'),
 };
 process.env.BABEL_ENV = TARGET;
 
 const common = {
   entry: {
-    app: PATHS.app
+    app: PATHS.app,
+    vendor: PATHS.vendor,
   },
   resolve: {
     extensions: ['.js', '.jsx']
   },
   output: {
     path: PATHS.build,
-    filename: 'bundle.js'
+    filename: '[name].[hash].js'
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: PATHS.app + '/index.html',
+      filename: 'index.html',
+      inject: 'body'
+    })
+  ],
   module: {
     rules: [
       {
@@ -31,7 +41,6 @@ const common = {
         test: /\.(css)$/,
         use: ['style-loader', 'css-loader']
       }, {
-        // Test expects a RegExp! Note the slashes!
         test: /\.(scss)$/,
         // loaders: ['style-loader','css-loader', 'sass-loader']
         use: [
@@ -77,11 +86,7 @@ if (TARGET === 'start' || !TARGET) {
       port: process.env.PORT
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      // https://github.com/webpack-contrib/npm-install-webpack-plugin/issues/105
-      // new NpmInstallPlugin({
-      //     save: true // --save
-      // })
+      new webpack.HotModuleReplacementPlugin()
     ]
   });
 }
@@ -95,7 +100,10 @@ if (TARGET === 'build') {
           NODE_ENV: JSON.stringify('production')
         }
       }),
-      new webpack.optimize.UglifyJsPlugin()
+      new webpack.optimize.UglifyJsPlugin(),
+      new webpack.optimize.CommonsChunkPlugin({
+        name: ['app', 'vendor'],
+      })
     ]
   });
 }
