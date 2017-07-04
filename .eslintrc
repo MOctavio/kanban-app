@@ -3,7 +3,8 @@
     "react"
   ],
   "extends": [
-    "eslint:recommended", "plugin:react/recommended"
+    "eslint:recommended",
+    "plugin:react/recommended"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -19,10 +20,10 @@
     "node": true
   },
   "rules": {
+    "import/no-extraneous-dependencies": "off",
+    "no-underscore-dangle": "off",
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
-    "react/react-in-jsx-scope": "error",
-    "no-underscore-dangle": "off",
-    "import/no-extraneous-dependencies": "off"
+    "react/react-in-jsx-scope": "error"
   }
 }
