@@ -35,7 +35,7 @@
     "webpack-merge": "^4.1.0"
   },
   "scripts": {
-    "build": "webpack-dev-server",
+    "build": "webpack",
     "lint": " eslint --fix app/**/*.js*",
     "start": "webpack-dev-server --progress true"
   }

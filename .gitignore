@@ -3,5 +3,4 @@
 
 node_modules
 *.lock
-build
-!build/index.html
+dist
